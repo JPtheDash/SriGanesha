@@ -41,7 +41,7 @@ class SelectionStore(private val context: Context) {
     }
 
     suspend fun update(update: CreationSelection) {
-        context.dataStore.edit { prefs: Preferences ->
+        context.dataStore.edit { prefs ->
             update.head?.let { prefs[Keys.HEAD] = it }
             update.body?.let { prefs[Keys.BODY] = it }
             update.vahana?.let { prefs[Keys.VAHANA] = it }
