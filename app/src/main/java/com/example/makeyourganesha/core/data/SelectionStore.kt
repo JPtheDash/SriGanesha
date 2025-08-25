@@ -17,8 +17,11 @@ data class CreationSelection(
     val artifacts: String? = null
 )
 
-class SelectionStore(private val context: Context) {
-    private val Context.dataStore by preferencesDataStore(name = "selections")
+// Hold the DataStore delegate at top-level to guarantee a single instance per process
+private val Context.selectionDataStore by preferencesDataStore(name = "selections")
+
+class SelectionStore(context: Context) {
+    private val appContext: Context = context.applicationContext
 
     private object Keys {
         val HEAD = stringPreferencesKey("head")
@@ -29,7 +32,7 @@ class SelectionStore(private val context: Context) {
         val ARTIFACTS = stringPreferencesKey("artifacts")
     }
 
-    val flow: Flow<CreationSelection> = context.dataStore.data.map { prefs ->
+    val flow: Flow<CreationSelection> = appContext.selectionDataStore.data.map { prefs ->
         CreationSelection(
             head = prefs[Keys.HEAD],
             body = prefs[Keys.BODY],
@@ -41,7 +44,7 @@ class SelectionStore(private val context: Context) {
     }
 
     suspend fun update(update: CreationSelection) {
-        context.dataStore.edit { prefs ->
+        appContext.selectionDataStore.edit { prefs ->
             update.head?.let { prefs[Keys.HEAD] = it }
             update.body?.let { prefs[Keys.BODY] = it }
             update.vahana?.let { prefs[Keys.VAHANA] = it }
