@@ -65,6 +65,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3:1.3.0")
     implementation("androidx.navigation:navigation-compose:2.8.1")
+    // Material Components (XML themes & widgets) for Theme.Material3.* parents
+    implementation("com.google.android.material:material:1.12.0")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.1.1")
