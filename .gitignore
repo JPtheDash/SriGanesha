@@ -1,0 +1,40 @@
+# Gradle
+.gradle/
+build/
+**/build/
+.gradle/
+.kotlin/
+.cxx/
+.externalNativeBuild/
+
+# Local configuration
+local.properties
+keystore*
+*.keystore
+*.jks
+
+# Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+
+# Captures, logs
+captures/
+*.log
+
+# Misc
+/.settings/
+/.metadata/
+.navigation/
+
+# Generated
+app/release/
+app/debug/
+app/intermediates/
+app/generated/
+
+# Gradle Wrapper caches
+gradle/wrapper/gradle-wrapper.jar
+
